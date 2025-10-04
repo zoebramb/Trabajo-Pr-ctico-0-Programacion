@@ -5,9 +5,15 @@ public class Estudiante
     private int edad;
     private String carrera;
     private float promedio;
+    private Materia[] materias;
+    private int cantidadMaterias;
 
     //constructor sin parámetros
-    public Estudiante(){}
+    public Estudiante()
+    {
+        this.materias = new Materia[10]; // tamaño inicial
+        this.cantidadMaterias = 0;
+    }
 
     //constructor con parámetros ahora con set ya que encapsulamos los atributos
     public Estudiante(String nombre,String apellido,int edad,String carrera,float promedio)
@@ -89,6 +95,49 @@ public class Estudiante
         else
         {
             System.out.println("El promedio debe estar entre 0 y 10");
+        }
+    }
+
+    //método para agregar materia
+    public void agregarMateria(Materia materia)
+    {
+        if(cantidadMaterias < materias.length)
+        {
+            materias[cantidadMaterias] = materia;
+            cantidadMaterias++;
+        }
+        else
+        {
+            System.out.println("No se pueden agregar más materias");
+        }
+    }
+
+    //método para calcular el promedio de las materias
+    public float calcularPromedioMaterias()
+    {
+        if(cantidadMaterias == 0)
+        {
+            return 0;
+        }
+        float suma = 0;
+        for(int i = 0; i < cantidadMaterias; i++)
+        {
+            suma += materias[i].getCalificacion();
+        }
+        return suma / cantidadMaterias;
+    }
+
+    //Metodo para mostrar las materias
+    public void mostrarMaterias()
+    {
+        if(cantidadMaterias == 0)
+        {
+            System.out.println("No hay materias inscritas");
+            return;
+        }
+        for(int i = 0; i < cantidadMaterias; i++)
+        {
+            System.out.println("Materia: " + materias[i].getNombre() + " - Calificación: " + materias[i].getCalificacion());
         }
     }
 }

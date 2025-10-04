@@ -1,16 +1,18 @@
 //va a ser el main
 public class App 
 {
-    public static void main(String[] args) throws Exception 
+    public static void main(String[] args) 
     {
     
+    Carrera carrera = new Carrera("Ingeniería en Sistemas");    
+
     Estudiante e1 = new Estudiante(); //por el c. sin parámetros
     Estudiante e2 = new Estudiante();
     Estudiante e3 = new Estudiante();
     e3.setNombre("Ana");
     e3.setApellido("García");
     e3.setEdad(20);
-    e3.setCarrera("Ingeniería");
+    e3.setCarrera("Ingeniería en Sistemas");
     e3.setPromedio(8.5f);
 
     Estudiante e4 = new Estudiante("Juan", "Perez", 22, "Programacion", 9f);
@@ -23,5 +25,17 @@ public class App
     {
         System.out.println("Nombre: " + i.getNombre() + " " + i.getApellido() + " Promedio: " + i.getPromedio());
     }
+
+    e1.agregarMateria(new Materia("Matemáticas",1001,4,8));
+    e1.agregarMateria(new Materia("Programación", 1002, 3, 7));
+
+    e1.calcularPromedioMaterias();
+
+    carrera.agregarEstudiante(e1);
+    carrera.agregarEstudiante(e2);
+
+    carrera.listarEstudiantes();
+
+    carrera.buscarEstudiante("Ana");
     }
 }
