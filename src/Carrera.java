@@ -50,4 +50,9 @@ public class Carrera {
         }
         System.out.println("Estudiante no encontrado.");
     }   
+
+    public String toString() 
+    {
+        return "Carrera: " + nombre + ", Cantidad de Estudiantes: " + cantidadEstudiantes;
+    }
 }

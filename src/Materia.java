@@ -4,17 +4,19 @@ public class Materia
     private int codigo;
     private int creditos;
     private float calificacion;
+    private Profesor profesor;
  
     //crear constructor vacio
     public Materia(){};
 
     //constructor con parámetros
-    public Materia(String nombre, int codigo, int creditos, float calificacion)
+    public Materia(String nombre, int codigo, int creditos, float calificacion, Profesor profesor)
     {
         this.nombre = nombre;
         this.codigo = codigo;
         this.creditos = creditos;
         this.calificacion = calificacion;
+        this.profesor = profesor;
     }
 
     //getters y setters
@@ -59,6 +61,20 @@ public class Materia
         this.calificacion = calificacion;
     }
 
+    public Profesor getProfesor()
+    {
+        return profesor;
+    }
+    public void setProfesor(Profesor profesor)
+    {
+        this.profesor = profesor;
+    }
+
+    //tengo que instanciar en main
+    public String toString()
+    {
+        return "Materia: " + nombre + ", Código: " + codigo + ", Créditos: " + creditos + ", Calificación: " + calificacion + ", Profesor: " + profesor.getNombre() + " " + profesor.getApellido();
+    }
 
     
 }

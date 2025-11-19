@@ -1,75 +1,17 @@
-public class Estudiante
+public class Estudiante extends Persona implements MiembroUniversidad
 {
-    private String nombre;
-    private String apellido;
-    private int edad;
     private String carrera;
     private float promedio;
     private Materia[] materias;
     private int cantidadMaterias;
 
-    //constructor sin parámetros
-    public Estudiante()
+    public Estudiante(String nombre,String apellido,int edad,String carrera,float promedio, String documento)
     {
-        this.materias = new Materia[10]; // tamaño inicial
-        this.cantidadMaterias = 0;
-    }
-
-    //constructor con parámetros ahora con set ya que encapsulamos los atributos
-    public Estudiante(String nombre,String apellido,int edad,String carrera,float promedio)
-    {
-        setNombre(nombre);
-        setApellido(apellido);
-        setEdad(edad);
-        setCarrera(carrera);
-        setPromedio(promedio);
-    }
-    //getter y setter de nombre
-    public String getNombre()
-    {
-        return nombre;
-    }
-    public void setNombre(String nombre)
-    {
-        if (nombre == null || nombre.isEmpty() == true){
-            System.out.println("El nombre no puede estar vacio");
-        }
-        else{
-        this.nombre = nombre;
-        }
-    }
-    //getter y setter de apellido
-    public String getApellido()
-    {
-        return apellido;
-    }
-    public void setApellido (String apellido)
-    {
-        if (apellido == null || apellido.isEmpty() == true)
-        {
-            System.out.println("El apellido no puede estar vacio");
-        }
-        else
-        {
-        this.apellido = apellido;
-        }
-    }
-    //getter y setter de edad
-    public int getEdad()
-    {
-        return edad;
-    }
-    public void setEdad(int edad)
-    {
-        // exigir mayor o igual a 16 años
-        if (edad < 16)
-        {
-            System.out.println("Tiene que ser mayor de 16 años");
-        }
-        else
-        {
-            this.edad = edad;
-        }
+        super(nombre, apellido, edad, documento);
+        this.carrera = carrera;
+        this.promedio = promedio;
+        this.materias= new Materia[10]; //inicializado asi se evita el null pointer
+        this.cantidadMaterias = 0; 
     }
     //getter y setter de carrera
     public String getCarrera()
@@ -98,7 +40,7 @@ public class Estudiante
         }
     }
 
-    //método para agregar materia
+    //método para agregar materias
     public void agregarMateria(Materia materia)
     {
         if(cantidadMaterias < materias.length)
@@ -139,5 +81,20 @@ public class Estudiante
         {
             System.out.println("Materia: " + materias[i].getNombre() + " - Calificación: " + materias[i].getCalificacion());
         }
+    }
+    public String toString()
+    {
+        return "Estudiante: " + getNombre() + " " + getApellido() + ", Carrera: " + carrera + ", Promedio: " + promedio;
+    }
+
+    //para implementar la interfaz
+    public String obtenerRol()
+    {
+        return "Estudiante";
+    }
+
+    public String obtenerInformacionCompleta()
+    {
+        return this.toString();
     }
 }
