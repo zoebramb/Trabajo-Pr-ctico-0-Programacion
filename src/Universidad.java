@@ -55,5 +55,45 @@ public class Universidad
 
 //Metodos recursivos vs iterativos
 
+ public static int contarEstudiantesRecursivo(Estudiante[] estudiantes, String carrera, 
+int indice)
+{
+    if (indice == estudiantes.length) return 0;
 
+    int suma = 0;
+    if(estudiantes[indice].getCarrera().equalsIgnoreCase(carrera)) suma = 1;
+
+    return suma + contarEstudiantesRecursivo(estudiantes, carrera, indice + 1);
+}
+
+public int contarEstudiantesIterativo(Estudiante[] estudiantes, String carrera)
+{
+    int contador = 0;
+    for(int i= 0; i < estudiantes.length; i++)
+    {
+        if(estudiantes[i].getCarrera().equalsIgnoreCase(carrera))
+        {
+            contador++;
+        }
+    }
+    return contador;
+}
+
+public static Estudiante buscarEstRecursivo(Estudiante[] estudiantes, String documento, int indice)
+{
+    if(indice == estudiantes.length) return null; //null pq no puedo poner return 0, y el equivalente a 0 seria null
+
+    if(estudiantes[indice].getDocumento().equals(documento)) return estudiantes[indice];
+
+    return buscarEstRecursivo(estudiantes, documento, indice + 1);
+}
+
+public Estudiante buscarEstIterativo(Estudiante[] estudiantes, String documento)
+{
+    for(int i = 0; i< estudiantes.length ; i++)
+    {
+        if(estudiantes[i].getDocumento().equals(documento)) return estudiantes[i];
+    }
+    return null;
+}
 }
