@@ -97,4 +97,44 @@ public class Estudiante extends Persona implements MiembroUniversidad
     {
         return this.toString();
     }
+
+    //Implementacion de funciones recursivas vs iterativas
+
+    public static double calcularPromedioRecursivo(Materia[] materias, int indice)
+    {
+        //caso base, cuando llegue al ultimo indice termina
+        if (indice == materias.length)
+        {
+            return 0;//hace la vuelta
+        }
+
+        //paso recursivo 
+        //llama a cada indice 
+        double paso = calcularPromedioRecursivo(materias, indice + 1);
+
+        //va sumando
+        double suma = materias[indice].getCalificacion() + paso;
+
+        if (indice == 0)// cuando ya esta en el primer indice de vuelta, devuelve el promedio
+        {
+            return suma/materias.length;
+        }
+
+        return suma;// si no estoy en el indice 0 devuelvo la suma para que siga sumando
+    }
+
+    public double calcularPromedioIterativo()
+    {
+        if(materias.length == 0 || materias == null) return 0; // para evitar un dividir por 0
+
+        double suma = 0;
+
+        for(int i=0;i<materias.length;i++)
+        {
+            suma = suma + materias[i].getCalificacion();
+        }
+
+        double promedio = suma/materias.length;
+        return promedio;
+    }
 }
