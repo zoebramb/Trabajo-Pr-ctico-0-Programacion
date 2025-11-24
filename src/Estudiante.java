@@ -39,6 +39,19 @@ public class Estudiante extends Persona implements MiembroUniversidad
             System.out.println("El promedio debe estar entre 0 y 10");
         }
     }
+    public Materia[] getMaterias()
+    {
+        return materias;
+    }
+    public void setMaterias(Materia[] materias)
+    {
+        this.materias = materias;
+        if (materias != null) 
+        {
+            this.cantidadMaterias = materias.length; //por si cargan un estudiante con mas d una materia
+        }
+        else this.cantidadMaterias = 0;
+    }
 
     //método para agregar materias
     public void agregarMateria(Materia materia)
@@ -100,10 +113,10 @@ public class Estudiante extends Persona implements MiembroUniversidad
 
     //Implementacion de funciones recursivas vs iterativas
 
-    public static double calcularPromedioRecursivo(Materia[] materias, int indice)
+    public double calcularPromedioRecursivo(Materia[] materias, int indice)
     {
         //caso base, cuando llegue al ultimo indice termina
-        if (indice == materias.length)
+        if (indice == this.cantidadMaterias)
         {
             return 0;//hace la vuelta
         }
@@ -117,7 +130,7 @@ public class Estudiante extends Persona implements MiembroUniversidad
 
         if (indice == 0)// cuando ya esta en el primer indice de vuelta, devuelve el promedio
         {
-            return suma/materias.length;
+            return suma/ this.cantidadMaterias;
         }
 
         return suma;// si no estoy en el indice 0 devuelvo la suma para que siga sumando
@@ -125,16 +138,16 @@ public class Estudiante extends Persona implements MiembroUniversidad
 
     public double calcularPromedioIterativo()
     {
-        if(materias.length == 0 || materias == null) return 0; // para evitar un dividir por 0
+        if(this.cantidadMaterias == 0 || materias == null) return 0; // para evitar un dividir por 0
 
         double suma = 0;
 
-        for(int i=0;i<materias.length;i++)
+        for(int i=0;i<this.cantidadMaterias;i++)
         {
             suma = suma + materias[i].getCalificacion();
         }
 
-        double promedio = suma/materias.length;
+        double promedio = suma/this.cantidadMaterias;
         return promedio;
     }
 }
