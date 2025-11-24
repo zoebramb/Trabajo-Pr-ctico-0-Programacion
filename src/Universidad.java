@@ -58,7 +58,7 @@ public class Universidad
  public int contarEstudiantesRecursivo(Estudiante[] estudiantes, String carrera, 
 int indice)
 {
-    if (indice == this.cantidadMiembros) return 0;
+    if (indice == estudiantes.length) return 0;
 
     int suma = 0;
     if(estudiantes[indice].getCarrera().equalsIgnoreCase(carrera)) suma = 1;
@@ -81,7 +81,7 @@ public int contarEstudiantesIterativo(Estudiante[] estudiantes, String carrera)
 
 public Estudiante buscarEstRecursivo(Estudiante[] estudiantes, String documento, int indice)
 {
-    if(indice == this.cantidadMiembros) return null; //null pq no puedo poner return 0, y el equivalente a 0 seria null
+    if(indice == estudiantes.length) return null; //null pq no puedo poner return 0, y el equivalente a 0 seria null
 
     if(estudiantes[indice].getDocumento().equals(documento)) return estudiantes[indice];
 
@@ -90,7 +90,7 @@ public Estudiante buscarEstRecursivo(Estudiante[] estudiantes, String documento,
 
 public Estudiante buscarEstIterativo(Estudiante[] estudiantes, String documento)
 {
-    for(int i = 0; i< this.cantidadMiembros ; i++)
+    for(int i = 0; i< estudiantes.length ; i++)
     {
         if(estudiantes[i].getDocumento().equals(documento)) return estudiantes[i];
     }

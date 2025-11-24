@@ -67,7 +67,7 @@ public class Persona {
     public boolean equals(Object o)
     {
         if(this == o) return true; //se "mira" a si mismo y si es la variabje está apuntando al mismo lugar de memoria es el mismo objeto
-        if (o == null | getClass() != o.getClass()) return false; // compara si son de la misma clase
+        if (o == null || getClass() != o.getClass()) return false; // compara si son de la misma clase
         Persona persona = (Persona) o; // equals recibe o que es de tipo objeto pero no sabe q tiene como atributo documento. con esto hacemos que se trate a o como una persona
         return Objects.equals(documento, persona.documento);//comparacion
     }
